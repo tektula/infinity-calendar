@@ -5,14 +5,32 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover", user-scalable=no">
     <title>Infinity Calendar</title>
     <style>
-        :root {
-            --bg-black: #000000;
-            --sidebar-gray: #3d3d3d;
-            --row-light: #e1fbc4;
-            --row-dark: #c9efaa;
-            --today-yellow: #fff176;
-            --text-main: #1b5e20;
-        }
+       :root {
+    /* Helle Basis (deine stabilen Farben) */
+    --bg-black: #000000;
+    --sidebar-gray: #3d3d3d;
+    --row-light: #e1fbc4;
+    --row-dark: #c9efaa;
+    --today-yellow: #fff176;
+    --text-main: #1b5e20;
+    --text-event: #000000;   /* Neu für Darkmode-Steuerung */
+    --text-sidebar: #ffffff; /* Neu für Darkmode-Steuerung */
+--bg-button: rgba(46, 125, 50, 0.7);
+}
+
+/* Automatische Umschaltung auf Darkmode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sidebar-gray: #121212;
+        --row-light: #1D2619;
+        --row-dark: #161D12;
+        --today-yellow: #5E541B;
+        --text-main: #DCE6D8;
+        --text-event: #FFFFFF;
+        --text-sidebar: #888888;
+--bg-button: rgba(20, 50, 20, 0.9);
+    }
+}
 
         body, html {
             margin: 0; padding: 0;
@@ -83,7 +101,7 @@ background: var(--sidebar-gray);
         .day-row {
             display: flex;
             min-height: 50px;
-            padding: 10px 15px;
+            padding: 5px 5px;
             box-sizing: border-box;
             background: var(--row-light);
             align-items: flex-start;
@@ -103,7 +121,7 @@ background: var(--sidebar-gray);
         
         .date-number, .date-day { 
             font-weight: 400; 
-            font-size: 1.05rem; 
+            font-size: 0.9rem; 
             line-height: 1.4; 
         }
 
@@ -122,10 +140,10 @@ background: var(--sidebar-gray);
         }
         
         .event-item { 
-            color: #000; 
+color: var(--text-event);
             cursor: pointer; 
             line-height: 1.4;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             font-weight: 700;
             word-break: break-word;
         }
@@ -135,7 +153,7 @@ background: var(--sidebar-gray);
     width: 65px; 
     height: 65px; 
     border-radius: 50%; /* Hier von 22px auf 50% ändern */
-background: rgba(46, 125, 50, 0.7);
+background: var(--bg-button) !important;
     color: white; 
     border: none;
     font-weight: bold; 
