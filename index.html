@@ -323,32 +323,44 @@ background: var(--bg-button) !important;
 
 @media (orientation: landscape) {
     .month-section {
-        display: block !important;
-        position: relative;
-        /* HIER LIEGT DER FEHLER: Wir nehmen das Sidebar-Grau statt Schwarz */
-        background-color: var(--bg-sidebar) !important; 
+        display: flex !important;
+        justify-content: center;
+        position: relative; /* Wichtig: Das ist der Anker für die Schiene */
+        background-color: var(--bg-sidebar) !important;
         width: 100%;
+        border-top: 8px solid #000000 !important;
+        margin-top: 0 !important;
     }
 
     .days-container {
-        max-width: 700px !important;
-        margin: 0 auto !important;
+        max-width: 700px !important; 
         width: 100%;
-        background-color: var(--bg-calendar);
+        background-color: var(--bg-calendar) !important;
         position: relative;
-        /* Ein kleiner Schatten lässt den Kalender edler auf dem Grau liegen */
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        z-index: 1; /* Kalender liegt über dem Hintergrund */
     }
 
     .month-rail {
-        position: absolute;
+        /* Zurück zu absolute, damit sie mit der Sektion mitläuft */
+        position: absolute; 
         left: 0;
         top: 0;
-        bottom: 0;
-        width: 50px !important;
-        z-index: 10;
-        /* Muss die gleiche Farbe haben wie der Hintergrund der Section */
+        bottom: 0; /* Dehnt die Schiene über die gesamte Monatshöhe */
+        width: 55px !important;
         background-color: var(--bg-sidebar) !important;
+        z-index: 2;
+    }
+
+    .sticky-wrapper {
+        /* Sorgt dafür, dass der Monatsname beim Scrollen innerhalb 
+           seines Monats oben am Bildschirmrand stehen bleibt */
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
