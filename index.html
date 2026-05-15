@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Infinity Kalender V47</title>
+    <title>Infinity Calendar</title>
     <style>
         :root {
             --bg-black: #000000;
@@ -22,11 +22,13 @@
             overflow: hidden;
         }
 
-        .calendar-scroll {
-            height: 100vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+.calendar-scroll {
+    height: 100vh; /* Fallback */
+    height: 100dvh; /* Der eigentliche Fix für iOS */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 80px; /* Wichtig, damit man bis ganz unten scrollen kann */
+}
 
         .month-section {
             display: flex;
@@ -41,15 +43,15 @@
             position: relative;
         }
 
-        .sticky-wrapper {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 30px;
-        }
+.sticky-wrapper {
+    position: -webkit-sticky; /* Wichtig für Safari */
+    position: sticky;
+    top: 20px; /* Gibt dem Monatsnamen etwas Luft nach oben */
+    height: auto; /* Ändere das von 100vh auf auto */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
 
         .month-label {
             color: #ffffff;
