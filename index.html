@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Infinity Calendar</title>
     <style>
         :root {
@@ -23,11 +23,21 @@
         }
 
 .calendar-scroll {
-    height: 100vh; /* Fallback */
-    height: 100dvh; /* Der eigentliche Fix für iOS */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 80px; /* Wichtig, damit man bis ganz unten scrollen kann */
+    /* Erzwingt, dass der Scroller ganz oben beginnt */
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    /* Nutzt die volle dynamische Höhe im Querformat */
+    height: 100dvh !important; 
+    /* Verhindert horizontales Springen */
+    width: 100% !important;
+}
+
+/* Speziell für das Querformat (Landscape) */
+@media (orientation: landscape) {
+    .calendar-scroll {
+        /* Setzt jeglichen Sicherheitsabstand oben auf Null */
+        padding-top: 0 !important;
+    }
 }
 
         .month-section {
