@@ -322,7 +322,7 @@ background: var(--bg-button) !important;
 }
 
 @media screen and (orientation: landscape) {
-    /* Die Sektion wird zum Anker für die Schiene, hält sich aber sonst zurück */
+    /* Die Basis bleibt das dunkle Grau */
     html body .month-section {
         display: block !important;
         position: relative !important;
@@ -333,27 +333,42 @@ background: var(--bg-button) !important;
         padding: 0 !important;
     }
 
-    /* Der Kalender wird absolut zentriert und bekommt das Grün als Basis */
+    /* Der Kalender-Block: Jetzt fix auf 550px und knallhart zentriert */
     html body .days-container {
         display: block !important;
-        flex: none !important; /* Deaktiviert das störende Flexbox-Verhalten */
+        flex: none !important; 
         margin: 0 auto !important; 
-        max-width: 700px !important; 
-        width: 100% !important;
+        width: 550px !important; /* Deine gewünschte Breite */
+        max-width: 550px !important;
         background-color: var(--bg-calendar) !important;
         position: relative !important;
-        min-height: 100% !important;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        box-shadow: 0 0 40px rgba(0,0,0,0.6); /* Stärkerer Schatten für saubere Kante */
     }
 
-    /* Die Schiene liegt ÜBER dem grauen Hintergrund links, nicht neben dem Kalender */
+    /* Jede Zeile MUSS exakt so breit sein wie der Container */
+    html body .day-row {
+        width: 550px !important;
+        min-width: 550px !important;
+        display: flex !important;
+        margin: 0 !important;
+        padding: 5px 10px !important;
+        box-sizing: border-box !important;
+        background-color: transparent !important; /* Wichtig für einheitliches Grün */
+    }
+
+    /* Die Wechselstufen beim Grün */
+    html body .day-row:nth-child(even) {
+        background-color: var(--bg-row-alt) !important;
+    }
+
+    /* Schiene links absolut positionieren */
     html body .month-rail {
         position: absolute !important;
         left: 0 !important;
         top: 0 !important;
         bottom: 0 !important;
         width: 60px !important;
-        background-color: transparent !important; /* Nutzt das Grau der Section */
+        background-color: var(--bg-sidebar) !important;
         z-index: 10 !important;
     }
 
@@ -364,25 +379,6 @@ background: var(--bg-button) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-    }
-
-    /* Zwingt die Zeilen, die volle Breite des grünen Containers zu nutzen */
-    html body .day-row {
-        width: 100% !important;
-        display: flex !important;
-        margin: 0 !important;
-        padding: 5px 15px !important; /* Mehr Platz für den Text */
-        background-color: transparent !important;
-    }
-
-    html body .day-row:nth-child(even) {
-        background-color: var(--bg-row-alt) !important;
-    }
-
-    /* Fix für die Buttons im Querformat */
-    .f-btn {
-        width: 55px !important;
-        height: 55px !important;
     }
 }
 
