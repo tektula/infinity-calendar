@@ -322,9 +322,9 @@ background: var(--bg-button) !important;
 }
 
 @media screen and (orientation: landscape) {
-    /* Die Basis bleibt das dunkle Grau */
+    /* Die Sektion muss flexbox ausschalten, damit margin: auto funktioniert */
     html body .month-section {
-        display: block !important;
+        display: block !important; 
         position: relative !important;
         width: 100% !important;
         background-color: var(--bg-sidebar) !important;
@@ -333,35 +333,21 @@ background: var(--bg-button) !important;
         padding: 0 !important;
     }
 
-    /* Der Kalender-Block: Jetzt fix auf 550px und knallhart zentriert */
+    /* Der Container wird jetzt starr auf 550px gesetzt */
     html body .days-container {
         display: block !important;
-        flex: none !important; 
-        margin: 0 auto !important; 
-        width: 550px !important; /* Deine gewünschte Breite */
+        flex: none !important; /* Das hier killt den automatischen grünen Rand rechts */
+        margin: 0 auto !important; /* Zentriert den 550px Block */
+        width: 550px !important;
         max-width: 550px !important;
         background-color: var(--bg-calendar) !important;
         position: relative !important;
-        box-shadow: 0 0 40px rgba(0,0,0,0.6); /* Stärkerer Schatten für saubere Kante */
+        min-height: 100% !important;
+        /* Ein Schatten hilft, die Grenze zum Grau sauber zu ziehen */
+        box-shadow: 0 0 25px rgba(0,0,0,0.4); 
     }
 
-    /* Jede Zeile MUSS exakt so breit sein wie der Container */
-    html body .day-row {
-        width: 550px !important;
-        min-width: 550px !important;
-        display: flex !important;
-        margin: 0 !important;
-        padding: 5px 10px !important;
-        box-sizing: border-box !important;
-        background-color: transparent !important; /* Wichtig für einheitliches Grün */
-    }
-
-    /* Die Wechselstufen beim Grün */
-    html body .day-row:nth-child(even) {
-        background-color: var(--bg-row-alt) !important;
-    }
-
-    /* Schiene links absolut positionieren */
+    /* Die Schiene wird aus dem Layout genommen, damit sie nicht mitschiebt */
     html body .month-rail {
         position: absolute !important;
         left: 0 !important;
@@ -372,6 +358,7 @@ background: var(--bg-button) !important;
         z-index: 10 !important;
     }
 
+    /* Monatstext zentrieren */
     html body .sticky-wrapper {
         position: sticky !important;
         top: 0 !important;
@@ -379,6 +366,20 @@ background: var(--bg-button) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+    }
+
+    /* Zeilen müssen exakt bündig abschließen */
+    html body .day-row {
+        width: 100% !important;
+        display: flex !important;
+        background-color: transparent !important;
+        margin: 0 !important;
+        padding: 5px 15px !important;
+        box-sizing: border-box !important;
+    }
+
+    html body .day-row:nth-child(even) {
+        background-color: var(--bg-row-alt) !important;
     }
 }
 
