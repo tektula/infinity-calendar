@@ -163,17 +163,35 @@ background: rgba(46, 125, 50, 0.7);
     margin-top: 5px;
 }
 
-/* Stellt sicher, dass die Inputs die volle Breite nutzen */
+/* Alle Felder exakt gleich breit und kompakt */
 .m-box input[type="text"],
 .m-box input[type="date"],
 .m-box input[type="time"],
-.m-box select,
-.m-box textarea {
+.m-box select {
     width: 100% !important;
-    box-sizing: border-box; /* Wichtig: Padding wird in die Breite eingerechnet */
-    height: 48px; /* Einheitliche Höhe für alle Felder */
-    margin: 8px 0;
+    /* Verhindert, dass die Boxen wegen Padding unterschiedlich breit werden */
+    box-sizing: border-box !important; 
+    /* Reduziert die Höhe auf ein normales Maß */
+    height: 40px !important; 
+    padding: 5px 10px !important;
+    margin: 5px 0 !important;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    font-size: 16px;
     display: block;
+    /* Entfernt spezielle iPhone-Stylings, die Boxen verzerren */
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Spezieller Fix für das Select-Feld (Wiederholung), damit es nicht höher ist */
+.m-box select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"292.4"%20height%3D"292.4"><path%20fill%3D"%23666"%20d%3D"M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z"%2F><%2Fsvg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 12px auto;
+    padding-right: 30px !important;
 }
 /* Macht die Titel "Neu", "Termin" und "Backup" weiß */
 .m-box h3 {
