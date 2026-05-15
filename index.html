@@ -5,14 +5,29 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover", user-scalable=no">
     <title>Infinity Calendar</title>
     <style>
-        :root {
-            --bg-black: #000000;
-            --sidebar-gray: #3d3d3d;
-            --row-light: #e1fbc4;
-            --row-dark: #c9efaa;
-            --today-yellow: #fff176;
-            --text-main: #1b5e20;
-        }
+:root {
+    /* DEIN AKTUELLES DESIGN (Light Mode) */
+    --bg-sidebar: #333333;      /* Das dunkle Grau links */
+    --bg-calendar: #e1f2b1;     /* Das helle Grün der Zeilen */
+    --bg-weekend: #d4e8a0;      /* Etwas dunkleres Grün für Sa/So */
+    --bg-today: #fff3a0;        /* Dein Gelb für heute */
+    --text-main: #2d4a22;       /* Dunkelgrüner Text */
+    --text-sidebar: #ffffff;    /* Weißer Text in der Schiene */
+    --week-sep: #333333;        /* Dein Trenner */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* DARK MODE VERSION */
+        --bg-sidebar: #1a1a1a;      /* Fast Schwarz */
+        --bg-calendar: #1b2615;     /* Tiefes, dunkles Moosgrün */
+        --bg-weekend: #141d10;      /* Noch dunkleres Grün */
+        --bg-today: #4d4510;        /* Ein dunkles, gedimmtes Gold/Gelb */
+        --text-main: #d1e0c9;       /* Hellgrau-Grüner Text */
+        --text-sidebar: #aaaaaa;    /* Dezenteres Grau links */
+        --week-sep: #000000;        /* Schwarzer Trenner */
+    }
+}
 
         body, html {
             margin: 0; padding: 0;
@@ -42,7 +57,8 @@ overflow-y: auto !important;
 
         .month-rail {
             width: 45px;
-            background: var(--sidebar-gray);
+          background-color: var(--bg-sidebar);
+    color: var(--text-sidebar);
             flex-shrink: 0;
             position: relative;
         }
@@ -76,7 +92,7 @@ overflow-y: auto !important;
 
         .week-separator {
             height: 5px;
-background: var(--sidebar-gray);
+background-color: var(--week-sep);
             width: 100%;
         }
 
@@ -85,12 +101,13 @@ background: var(--sidebar-gray);
             min-height: 50px;
             padding: 10px 15px;
             box-sizing: border-box;
-            background: var(--row-light);
+          background-color: var(--bg-calendar);
+    color: var(--text-main);
             align-items: flex-start;
         }
 
         .day-row:nth-child(even) { background: var(--row-dark); }
-        .day-row.today { background: var(--today-yellow) !important; }
+        .day-row.today { background-color: var(--bg-today) !important; }
 
         .date-col { 
             width: 80px; 
