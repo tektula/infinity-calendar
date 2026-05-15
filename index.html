@@ -44,13 +44,17 @@
         }
 
 .sticky-wrapper {
-    position: -webkit-sticky; /* Wichtig für Safari */
+    position: -webkit-sticky;
     position: sticky;
-    top: 20px; /* Gibt dem Monatsnamen etwas Luft nach oben */
-    height: auto; /* Ändere das von 100vh auf auto */
+    top: 0;
+    /* Wir nutzen 100vh, damit der Wrapper den gesamten Sichtbereich abdeckt */
+    height: 100vh; 
+    height: 100dvh; 
     display: flex;
-    align-items: flex-start;
+    /* Zentriert den Text vertikal im sichtbaren Bereich */
+    align-items: center; 
     justify-content: center;
+    box-sizing: border-box;
 }
 
         .month-label {
@@ -148,10 +152,28 @@ background: rgba(46, 125, 50, 0.7);
             background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center;
             backdrop-filter: blur(3px);
         }
-        .m-box {
-            background: #fff; padding: 25px; border-radius: 25px; width: 92%; max-width: 400px; 
-            box-sizing: border-box; max-height: 90vh; overflow-y: auto;
-        }
+        /* Fix für die Datums-Zeile im Pop-up */
+.m-box > div[style*="display:flex"] {
+    flex-direction: column !important; /* Stapelt Start und Ende untereinander */
+    gap: 15px !important;
+}
+
+/* Verhindert, dass Datum und Zeit in einer Zeile gequetscht werden */
+#m-time-start-wrap, #m-time-end-wrap {
+    margin-top: 5px;
+}
+
+/* Stellt sicher, dass die Inputs die volle Breite nutzen */
+.m-box input[type="date"], 
+.m-box input[type="time"] {
+    width: 100% !important;
+    display: block;
+}
+/* Macht die Titel "Neu", "Termin" und "Backup" weiß */
+.m-box h3 {
+    color: #ffffff; 
+    margin-top: 0;
+}
         .btn-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
         .btn-grid button { height: 48px; flex: 1 1 45%; border: none; border-radius: 12px; font-weight: bold; font-size: 0.95rem; }
         .btn-grid .full { flex: 1 1 100% !important; }
@@ -173,7 +195,7 @@ background: rgba(46, 125, 50, 0.7);
             cursor: pointer;
         }
         .check-row input { width: 22px; height: 22px; margin: 0; cursor: pointer; }
-        .check-row span { font-size: 1rem; color: #333; font-weight: 500; }
+        .check-row span { font-size: 1rem; color: #ffffff; font-weight: 500; }
 
         hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
     </style>
