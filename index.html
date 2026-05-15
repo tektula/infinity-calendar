@@ -323,44 +323,58 @@ background: var(--bg-button) !important;
 
 @media (orientation: landscape) {
     .month-section {
-        display: flex !important;
-        justify-content: center;
-        position: relative; /* Wichtig: Das ist der Anker für die Schiene */
-        background-color: var(--bg-sidebar) !important;
+        display: block !important; /* Kein Flexbox auf dieser Ebene */
+        position: relative;
+        background-color: var(--bg-sidebar) !important; /* Das Grau links/rechts */
         width: 100%;
         border-top: 8px solid #000000 !important;
-        margin-top: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .days-container {
+        /* Das hier zentriert den Block exakt in der Bildschirmmitte */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        
         max-width: 700px !important; 
         width: 100%;
+        
+        /* Das Grün muss hier als Basis liegen, damit keine Lücken entstehen */
         background-color: var(--bg-calendar) !important;
         position: relative;
-        z-index: 1; /* Kalender liegt über dem Hintergrund */
+        z-index: 1;
+        min-height: 100%;
     }
 
     .month-rail {
-        /* Zurück zu absolute, damit sie mit der Sektion mitläuft */
+        /* Absolut links am Rand, unabhängig vom Kalender in der Mitte */
         position: absolute; 
         left: 0;
         top: 0;
-        bottom: 0; /* Dehnt die Schiene über die gesamte Monatshöhe */
-        width: 55px !important;
+        bottom: 0;
+        width: 60px !important;
         background-color: var(--bg-sidebar) !important;
-        z-index: 2;
+        z-index: 5;
     }
 
     .sticky-wrapper {
-        /* Sorgt dafür, dass der Monatsname beim Scrollen innerhalb 
-           seines Monats oben am Bildschirmrand stehen bleibt */
-        position: -webkit-sticky;
         position: sticky;
         top: 0;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    /* Damit das Grün innerhalb der Zeilen nicht flackert oder Lücken hat */
+    .day-row {
+        width: 100% !important;
+        background-color: transparent !important; /* Nutzt das Grün vom Container */
+    }
+
+    .day-row:nth-child(even) {
+        background-color: var(--bg-row-alt) !important; /* Nur jede zweite Zeile einfärben */
     }
 }
 
