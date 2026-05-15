@@ -321,60 +321,47 @@ background: var(--bg-button) !important;
     }
 }
 
-@media (orientation: landscape) {
-    .month-section {
-        display: block !important; /* Kein Flexbox auf dieser Ebene */
-        position: relative;
-        background-color: var(--bg-sidebar) !important; /* Das Grau links/rechts */
-        width: 100%;
-        border-top: 8px solid #000000 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .days-container {
-        /* Das hier zentriert den Block exakt in der Bildschirmmitte */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        
-        max-width: 700px !important; 
-        width: 100%;
-        
-        /* Das Grün muss hier als Basis liegen, damit keine Lücken entstehen */
-        background-color: var(--bg-calendar) !important;
-        position: relative;
-        z-index: 1;
-        min-height: 100%;
-    }
-
-    .month-rail {
-        /* Absolut links am Rand, unabhängig vom Kalender in der Mitte */
-        position: absolute; 
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 60px !important;
+@media screen and (orientation: landscape) {
+    /* 1. Die Sektion muss den Platz freigeben */
+    html body .month-section {
+        display: block !important;
+        position: relative !important;
         background-color: var(--bg-sidebar) !important;
-        z-index: 5;
-    }
-
-    .sticky-wrapper {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Damit das Grün innerhalb der Zeilen nicht flackert oder Lücken hat */
-    .day-row {
         width: 100% !important;
-        background-color: transparent !important; /* Nutzt das Grün vom Container */
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    .day-row:nth-child(even) {
-        background-color: var(--bg-row-alt) !important; /* Nur jede zweite Zeile einfärben */
+    /* 2. Der Kalender-Block MUSS in die Mitte */
+    html body .days-container {
+        display: block !important;
+        margin: 0 auto !important; /* Erzwingt die Zentrierung */
+        max-width: 650px !important; /* Etwas schmaler für besseren Fokus */
+        width: 100% !important;
+        background-color: var(--bg-calendar) !important; /* Das durchgehende Grün */
+        position: relative !important;
+        float: none !important; /* Verhindert seitliches Kleben */
+    }
+
+    /* 3. Die Schiene komplett isolieren */
+    html body .month-rail {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 50px !important;
+        background-color: var(--bg-sidebar) !important;
+        z-index: 100 !important;
+    }
+
+    /* 4. Den Text in der Schiene mittig halten */
+    html body .sticky-wrapper {
+        position: sticky !important;
+        top: 0 !important;
+        height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 }
 
