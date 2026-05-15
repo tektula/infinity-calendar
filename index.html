@@ -120,7 +120,7 @@ background-color: var(--week-sep);
         .day-row {
             display: flex;
             min-height: 50px;
-            padding: 10px 15px;
+            padding: 2px 5px;
             box-sizing: border-box;
           background-color: var(--bg-calendar);
     color: var(--text-main);
@@ -318,6 +318,37 @@ background: var(--bg-button) !important;
     .m-box button {
         margin-top: 10px !important;
         padding: 10px !important;
+    }
+}
+
+@media (orientation: landscape) {
+    .month-section {
+        display: block !important;
+        position: relative;
+        /* HIER LIEGT DER FEHLER: Wir nehmen das Sidebar-Grau statt Schwarz */
+        background-color: var(--bg-sidebar) !important; 
+        width: 100%;
+    }
+
+    .days-container {
+        max-width: 700px !important;
+        margin: 0 auto !important;
+        width: 100%;
+        background-color: var(--bg-calendar);
+        position: relative;
+        /* Ein kleiner Schatten lässt den Kalender edler auf dem Grau liegen */
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .month-rail {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 50px !important;
+        z-index: 10;
+        /* Muss die gleiche Farbe haben wie der Hintergrund der Section */
+        background-color: var(--bg-sidebar) !important;
     }
 }
 
