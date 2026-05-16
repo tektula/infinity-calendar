@@ -706,6 +706,9 @@ background: var(--bg-button) !important;
         document.head.appendChild(style);
     }
 
+
+
+
     // Hilfsfunktion zur exakten Berechnung der KW (ISO-8601)
     function getWeekNumber(date) {
         const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -859,6 +862,129 @@ background: var(--bg-button) !important;
         document.getElementById('m-time-start-wrap').style.display = isA ? 'none' : 'block';
         document.getElementById('m-time-end-wrap').style.display = isA ? 'none' : 'block';
     }
+
+function renderMonth(y, m) {
+    const first = new Date(y, m, 1);
+    const k = first.getFullYear() + '-' + String(first.getMonth() + 1).padStart(2, '0');
+    if(loaded.includes(k)) return;
+    loaded.push(k);
+
+    // CSS für die KW-Schilder und die saubere Ausrichtung der Emojis
+    if (!document.getElementById('kw-separator-style')) {
+        const style = document.createElement('style');
+        style.id = 'kw-separator-style';
+        style.innerHTML = `
+            .week-separator {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .kw-label {
+                position: absolute;
+                font-size: 0.75rem;
+                font-weight: bold;
+                letter-spacing: 1.5px;
+                color: #ffffff !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px -1px 0 #000, 0px 1px 0 #000, -1px 0px 0 #000, 1px 0px 0 #000;
+                z-index: 10;
+                transform: translateY(-50%);
+                top: 50%;
+            }
+            .day-row {
+                display: flex;
+                align-items: center;
+            }
+            .event-col {
+                flex: 1;
+            }
+            /* Perfekter Platzhalter für die Mond-Emojis ganz rechts */
+            .moon-col {
+                font-size: 0.95rem; /* Optimale Emoji-Größe */
+                padding-right: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 24px;
+                cursor: default;
+                user-select: none;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Hilfsfunktion zur exakten Berechnung der KW (ISO-8601)
+    function getWeekNumber(date) {
+        const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        const dayNum = d.getUTCDay() || 7;
+        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    // Hilfsfunktion für die exakten Emoji-Mondphasen
+    function getMoonPhaseIcon(date) {
+        const lp = 2551443; 
+        const now = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0);
+        const newMoon = new Date(1970, 0, 7, 20, 35, 0);
+        let phase = ((now.getTime() - newMoon.getTime()) / 1000) % lp;
+        if (phase < 0) phase += lp;
+        const days = phase / (24 * 3600);
+        
+        // Präzise getaktet auf einen Tag Toleranz
+        if (days >= 29.0 || days < 0.5) return '🌑'; // Neumond
+        if (days >= 6.9 && days < 7.9) return '🌓';   // Zunehmender Halbmond
+        if (days >= 14.3 && days < 15.3) return '🌕'; // Vollmond
+        if (days >= 21.6 && days < 22.6) return '🌗'; // Abnehmender Halbmond
+        return ''; 
+    }
+
+    const sec = document.createElement('div');
+    sec.className = 'month-section';
+    sec.innerHTML = `<div class="month-rail"><div class="sticky-wrapper"><div class="month-label">${first.toLocaleDateString('de-DE',{month:'long',year:'numeric'})}</div></div></div><div class="days-container" id="days-${k}"></div>`;
+    scroller.appendChild(sec);
+
+    const container = document.getElementById(`days-${k}`);
+    let r = new Date(first);
+
+    while(r.getMonth() === first.getMonth()) {
+        if (r.getDay() === 1) {
+            const sep = document.createElement('div');
+            sep.className = 'week-separator';
+            const kw = getWeekNumber(r);
+            sep.innerHTML = `<div class="kw-label">KW ${kw}</div>`;
+            container.appendChild(sep);
+        }
+        const ds = getDS(r);
+        const isToday = ds === getDS(new Date());
+        const isWE = (r.getDay() === 0 || r.getDay() === 6);
+        
+        const row = document.createElement('div');
+        row.className = 'day-row' + (isToday ? ' today' : '') + (isWE ? ' we' : '');
+        row.id = `d-${ds}`;
+        row.onclick = () => openAdd(ds);
+        
+        const moonSymbol = getMoonPhaseIcon(r);
+        
+        row.innerHTML = `
+            <div class="date-col">
+                <span class="date-number">${r.getDate()}.</span>
+                <span class="date-day">${r.toLocaleDateString('de-DE',{weekday:'short'})}</span>
+            </div>
+            <div class="event-col" id="e-${ds}"></div>
+            <div class="moon-col">${moonSymbol}</div>
+        `;
+        container.appendChild(row);
+        
+        renderedDays.push({ds, date: new Date(r)});
+        drawEvents(ds, r);
+        r.setDate(r.getDate() + 1);
+    }
+}
 
 function openBackup() { 
         try {
