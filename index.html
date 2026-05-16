@@ -778,8 +778,43 @@ background: var(--bg-button) !important;
 
 function openBackup() { 
         try {
+            // ==========================================
+            // ALTE TERMINE & ALTE AUSNAHMEN LÖSCHEN
+            // ==========================================
+            // Berechne das Datum von vor genau einem Monat
+            const einMonatAgo = new Date();
+            einMonatAgo.setMonth(einMonatAgo.getMonth() - 1);
+
+            // 1. Einmalige alte Termine aus der DB löschen
+            if (Array.isArray(db)) {
+                db = db.filter(item => {
+                    if (item.rep && item.rep !== "none") return true; // Serien behalten
+                    if (!item.startDate) return true; 
+                    
+                    const eventDatum = new Date(item.startDate);
+                    return eventDatum >= einMonatAgo;
+                });
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+            }
+
+            // 2. Alte, abgelaufene Ausnahmen (gelöschte Serientermine) löschen
+            if (Array.isArray(exceptions)) {
+                exceptions = exceptions.filter(exString => {
+                    // Splittet den Eintrag beim Unterstrich (z.B. "ID_2026-05-22" -> "2026-05-22")
+                    const teile = exString.split('_');
+                    if (teile.length < 2) return true; // Zur Sicherheit behalten, falls das Format abweicht
+                    
+                    const exDatum = new Date(teile[1]);
+                    // Behalte die Ausnahme nur, wenn das Lösch-Datum nicht älter als ein Monat ist
+                    return exDatum >= einMonatAgo;
+                });
+                // Die bereinigten Ausnahmen im LocalStorage speichern (Nutzt deine EX_KEY Variable)
+                localStorage.setItem(EX_KEY, JSON.stringify(exceptions));
+            }
+            // ==========================================
+
+            // Ab hier läuft dein normales, verschlüsseltes Backup weiter
             const rawData = JSON.stringify({db, exceptions});
-            // Macht den Text im Feld unlesbar (sicher vor Umlaut-Fehlern)
             const verschluesselt = btoa(encodeURIComponent(rawData).replace(/%([0-9A-F]{2})/g, function(match, p1) {
                 return String.fromCharCode('0x' + p1);
             }));
