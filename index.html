@@ -593,38 +593,56 @@ background: var(--bg-button) !important;
     <div class="m-box" style="padding: 20px; border-radius: 16px; background: #1e1e1e; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
         <h3 style="margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; color: #ffffff; text-align: center;">Tools</h3>
         
-        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Code</label>
-        <textarea id="b-export" readonly style="width: 100%; height: 60px; font-size: 0.8rem; color: #ccc; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 12px; font-family: monospace;"></textarea>
+        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Backup</label>
+        <textarea id="b-export" readonly style="width: 100%; height: 60px; font-size: 0.8rem; color: #ccc; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 1px; font-family: monospace;"></textarea>
         
-        <div class="btn-grid" style="margin-bottom: 20px;">
-            <button class="btn-gray full" onclick="copyB()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Copy Code' : 'Code kopieren')</script></button>
-            <button class="btn-gray" onclick="downloadB()">Download</button>
+        <div class="btn-grid" style="margin-bottom: 10px;">
+            <button class="btn-gray full" onclick="copyB()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Copy' : 'Kopieren')</script></button>
+            <button class="btn-gray" onclick="downloadB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Save' : 'Speichern')</script></button>
             <button class="btn-red" onclick="clearAllData()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Delete' : 'Löschen')</script></button>
         </div>
         
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+
         
-        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Recovery' : 'Wiederherstellen')</script></label>
-        <textarea id="b-import" style="width: 100%; height: 60px; font-size: 0.8rem; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 12px;" placeholder="Code..."></textarea>
+        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.5px;">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Recovery' : 'Wiederherstellen')</script></label>
+        <textarea id="b-import" style="width: 100%; height: 60px; font-size: 0.8rem; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 1px;" placeholder="Backup..."></textarea>
         
-        <div class="btn-grid" style="margin-bottom: 20px;">
-            <button class="btn-green full" onclick="importB()">Import</button>
+        <div class="btn-grid" style="margin-bottom: 10px;">
+            <button class="btn-green full" onclick="importB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Load' : 'Laden')</script></button>
         </div>
         
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+
         
-        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Design</label>
+        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.5px;">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Event reminder' : 'Terminerinnerung')</script></label>
+        
+        <div class="settings-row">
+ 
+    <select id="reminderTime" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
+        <option id="opt0" value="0">0h</option>
+        <option id="opt15" value="15">15m</option>
+        <option id="opt30" value="30">30m</option>
+        <option id="opt60" value="60">1h</option>
+        <option id="opt120" value="120" selected>2h</option>
+        <option id="opt1440" value="1440">1d</option>
+    </select>
+</div>
+        
+        
+        
+
+        
+        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.5px;">Design</label>
         
         <select id="theme-select" onchange="changeTheme(this.value)" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
-            <option value="green">Mint</option>
-            <option value="blue">Ocean</option>
+            <option value="green">Kiwi</option>
+            <option value="blue">Aqua</option>
             <option value="red">Lava</option>
-            <option value="gray">Slate</option>
-            <option value="yellow">Amber</option>
-            <option value="orange">Coral</option>
-            <option value="pink">Berry</option>
-            <option value="purple">Iris</option>
-            <option value="turquoise">Aqua</option>
+            <option value="gray">Titan</option>
+            <option value="yellow">Mango</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Viola</option>
+            <option value="turquoise">Cyan</option>
             <option value="bw">Mono</option>
         </select>
 
@@ -868,8 +886,16 @@ function save() {
                         // Lokale Zeit berechnen
                         let notificationTime = new Date(parts[0], parts[1] - 1, parts[2], timeParts[0], timeParts[1]);
                         
-                        // Genau 2 Stunden abziehen
-                        notificationTime.setHours(notificationTime.getHours() - 2);
+                        // --- DYNAMISCHE MINUTEN ABZIEHEN (CRASH-SICHER) ---
+                        let minutesBefore = 120; // Standard: 2 Stunden vorher
+                        const menuElement = document.getElementById('reminderTime');
+                        if (menuElement) {
+                            minutesBefore = parseInt(menuElement.value) || 0;
+                        }
+                        
+                        // Minuten vom Termin abziehen
+                        notificationTime.setMinutes(notificationTime.getMinutes() - minutesBefore);
+                        // --------------------------------------------------
 
                         // Sprache abfragen
                         const isEnglish = (navigator.language || navigator.userLanguage).startsWith('en');
@@ -898,7 +924,6 @@ function save() {
         // Prozess lautlos abschließen (Wichtig, damit nichts schwarz bleibt!)
         silentFinalize();
     }
-
 
     function silentFinalize() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
