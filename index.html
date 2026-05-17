@@ -6,30 +6,44 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
     <title>Infinity Calendar</title>
     <style>
-     :root {
-    --bg-black: #000000;
-    --sidebar-gray: #3d3d3d;
-    --row-light: #e1fbc4;
-    --row-dark: #c9efaa;
-    --today-yellow: #00cc44;
-    --text-main: #1b5e20;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(46, 125, 50, 0.7);
+   :root, [data-theme="infinity"]  {
+--bg-black: #ffffff;
+--bg-black: #ffffff;
+    --sidebar-gray: #f0f2f5;
+    --row-light: #fff3d1;
+    --row-dark: #ffd8a8;
+    --today-yellow: #ff6b6b;
+    --text-main: #1a1510;
+    --text-event: #1a1510;
+    --text-sidebar: #495057;
+    --bg-button: #ff922b;
 }
 
-[data-theme="blue"] {
-    --sidebar-gray: #2c3e50;
-    --row-light: #e3f2fd;
-    --row-dark: #bbdefb;
-    --today-yellow: #ffff00;
-    --text-main: #0d47a1;
-    --text-event: #000000;
+[data-theme="lava"] {
+    --bg-black: #ffffff;
+    --sidebar-gray: #4a1212;
+    --row-light: #fff0f0;
+    --row-dark: #ffccd5;
+    --today-yellow: #ff3344;
+    --text-main: #2b0505;
+    --text-event: #2b0505;
     --text-sidebar: #ffffff;
-    --bg-button: rgba(13, 71, 161, 0.7);
+    --bg-button: #ff3344;
 }
 
-[data-theme="bw"] {
+[data-theme="aqua"] {
+    --bg-black: #ffffff;
+    --sidebar-gray: #e0f7fa;
+    --row-light: #b2ebf2;
+    --row-dark: #80deea;
+    --today-yellow: #ff6d00;
+    --text-main: #004d40;
+    --text-event: #004d40;
+    --text-sidebar: #004d40;
+    --bg-button: #ff6d00;
+}
+
+[data-theme="mono"] {
     --sidebar-gray: #f5f5f5 !important; 
     --row-light: #ffffff !important; 
     --row-dark: #fcfcfc !important; 
@@ -41,18 +55,19 @@
 }
 
 
-[data-theme="red"] {
-    --sidebar-gray: #4a1414;
-    --row-light: #ffebee;
-    --row-dark: #ffcdd2;
-    --today-yellow: #ff9d00;
-    --text-main: #b71c1c;
+[data-theme="kiwi"] {
+    --bg-black: #000000;
+    --sidebar-gray: #3d3d3d;
+    --row-light: #e1fbc4;
+    --row-dark: #c9efaa;
+    --today-yellow: #00cc44;
+    --text-main: #1b5e20;
     --text-event: #000000;
     --text-sidebar: #ffffff;
-    --bg-button: rgba(183, 28, 28, 0.7);
+    --bg-button: rgba(46, 125, 50, 0.7);
 }
 
-[data-theme="gray"] {
+[data-theme="titan"] {
     --sidebar-gray: #212121;
     --row-light: #f5f5f5;
     --row-dark: #e0e0e0;
@@ -63,27 +78,18 @@
     --bg-button: rgba(66, 66, 66, 0.7);
 }
 
-[data-theme="yellow"] {
+[data-theme="mango"] {
     --sidebar-gray: #fbc02d;
     --row-light: #fffde7;
     --row-dark: #fff9c4;
-    --today-yellow: #00e5ff; /* Cyan sticht auf Gelb hervor */
+    --today-yellow: #00e5ff; 
     --text-main: #f57f17;
     --text-event: #000000;
     --text-sidebar: #ffffff;
     --bg-button: rgba(251, 192, 45, 0.8);
 }
 
-[data-theme="orange"] {
-    --sidebar-gray: #e65100;
-    --row-light: #fff3e0;
-    --row-dark: #ffe0b2;
-    --today-yellow: #00e5ff;
-    --text-main: #e65100;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(230, 81, 0, 0.8);
-}
+
 
 [data-theme="pink"] {
     --sidebar-gray: #880e4f;
@@ -96,7 +102,7 @@
     --bg-button: rgba(136, 14, 79, 0.8);
 }
 
-[data-theme="purple"] {
+[data-theme="viola"] {
     --sidebar-gray: #4a148c;
     --row-light: #f3e5f5;
     --row-dark: #e1bee7;
@@ -107,16 +113,19 @@
     --bg-button: rgba(74, 20, 140, 0.8);
 }
 
-[data-theme="turquoise"] {
+[data-theme="cyan"] {
     --sidebar-gray: #006064;
     --row-light: #e0f2f1;
     --row-dark: #b2dfdb;
-    --today-yellow: #ff4081; /* Pink sticht auf Türkis hervor */
+    --today-yellow: #ff4081; 
     --text-main: #00695c;
     --text-event: #000000;
     --text-sidebar: #ffffff;
     --bg-button: rgba(0, 96, 100, 0.8);
 }
+
+
+
 
         body, html {
             margin: 0; padding: 0;
@@ -311,9 +320,9 @@ background: var(--bg-button) !important;
         .btn-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
         .btn-grid button { height: 48px; flex: 1 1 45%; border: none; border-radius: 12px; font-weight: bold; font-size: 0.95rem; }
         .btn-grid .full { flex: 1 1 100% !important; }
-        .btn-gray { background: #f2f2f2; color: #444; }
+        .btn-gray { background: #6C6C6C; color: #ffffff; }
         .btn-red { background: #ffebee; color: #c62828; }
-        .btn-green { background: #2e7d32; color: white; }
+        .btn-white { background: #f2f2f2; color: #444; }
 
         input, select, textarea { 
             width: 100%; padding: 12px; margin: 5px 0; border-radius: 10px; 
@@ -333,41 +342,55 @@ background: var(--bg-button) !important;
 
         hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --sidebar-gray: #121212;
-        --row-light: #1D2619;
-        --row-dark: #161D12;
-        --today-yellow: #1db94c;
-        --text-main: #DCE6D8;
-        --text-event: #FFFFFF;
-        --text-sidebar: #888888;
-        --bg-button: rgba(20, 50, 20, 0.9);
-    }
+@media (prefers-color-scheme: dark)   {
 
-    [data-theme="blue"] {
+:root, [data-theme="infinity"] {
+--bg-black: #0c0a08;  
+    --sidebar-gray: #0c0a08;     
+    --row-light: #593100;
+    --row-dark: #632200; 
+    --today-yellow: #ff6d00; 
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;    
+    --text-sidebar: #ffffff;    
+    --bg-button: #ff3c00;        
+}
+
+[data-theme="lava"] {
+    --bg-black: #0d0606;
+    --sidebar-gray: #140a0a;
+    --row-light: #4a0d0d;
+    --row-dark: #330505;
+    --today-yellow: #ff4500;
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+    --text-sidebar: #e5c5c5;
+    --bg-button: #ff4500;
+}
+
+    [data-theme="aqua"] {
         --sidebar-gray: #0a0e14;
         --row-light: #0d1b2a;
         --row-dark: #1b263b;
         --today-yellow: #AA8E00;
-        --text-main: #e0e1dd;
-        --text-event: #FFFFFF;
-        --text-sidebar: #778da9;
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+        --text-sidebar: #FFFFFF;
         --bg-button: rgba(13, 30, 71, 0.9);
     }
 
-    [data-theme="red"] {
-        --sidebar-gray: #1a0505;
-        --row-light: #2d1616;
-        --row-dark: #3d1a1a;
-        --today-yellow: #c62828;
-        --text-main: #f8d7da;
-        --text-event: #FFFFFF;
-        --text-sidebar: #a55d5d;
-        --bg-button: rgba(71, 13, 13, 0.9);
+    [data-theme="kiwi"] {
+        --sidebar-gray: #121212;
+        --row-light: #1D2619;
+        --row-dark: #161D12;
+        --today-yellow: #1db94c;
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+        --text-sidebar: #888888;
+        --bg-button: rgba(20, 50, 20, 0.9);
     }
 
-    [data-theme="bw"] {
+    [data-theme="mono"] {
         --sidebar-gray: #000000!important;
         --row-light: #111111!important;
         --row-dark: #000000!important;
@@ -378,49 +401,40 @@ background: var(--bg-button) !important;
         --bg-button: rgba(0, 0, 0, 0.9);
     }
 
-    [data-theme="gray"] {
+    [data-theme="titan"] {
         --sidebar-gray: #050505;
         --row-light: #1a1a1a;
         --row-dark: #2a2a2a;
-        --today-yellow: #FF0000; /* Knalliges Cyan sticht auf Dunkelgrau hervor */
-        --text-main: #ffffff;
-        --text-event: #FFFFFF;
+        --today-yellow: #FF0000; 
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
         --text-sidebar: #666666;
         --bg-button: rgba(40, 40, 40, 0.9);
     }
 
-[data-theme="yellow"] { 
+[data-theme="mango"] { 
         --sidebar-gray: #1a1a00; 
-        --row-light: #fff59d; /* Heller lassen für echten Gelb-Look */
-        --row-dark: #fdd835; 
+        --row-light: #5e521e; /* Heller lassen für echten Gelb-Look */
+        --row-dark: #473e13; 
         --today-yellow: #00b0ff; 
-        --text-main: #000000 !important; /* Text MUSS schwarz sein */
-        --text-event: #000000 !important; 
-        --text-sidebar: #888800; 
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+        --text-sidebar: #ffffff; 
         --bg-button: rgba(253, 216, 53, 0.9); 
     }
 
-    [data-theme="turquoise"] { 
-        --sidebar-gray: #001a1a; 
-        --row-light: #80cbc4; /* Helleres Türkis */
-        --row-dark: #4db6ac; 
-        --today-yellow: #ff4081; 
-        --text-main: #000000 !important; /* Schwarz für Lesbarkeit */
-        --text-event: #000000 !important; 
-        --text-sidebar: #008888; 
-        --bg-button: rgba(0, 150, 136, 0.9); 
-    }
+    [data-theme="cyan"] { 
+--bg-black: #000d0d;         
+    --sidebar-gray: #001a1a;     
+    --row-light: #005959;        
+    --row-dark: #004444;         
+    --today-yellow: #d84315;     
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;    
+    --text-sidebar: #ffffff;     
+    --bg-button: #d84315;  
+}
 
-    [data-theme="orange"] { 
-        --sidebar-gray: #1a0a00; 
-        --row-light: #ffb74d; 
-        --row-dark: #ffa726; 
-        --today-yellow: #18ffff; 
-        --text-main: #000000 !important; 
-        --text-event: #000000 !important; 
-        --text-sidebar: #884400; 
-        --bg-button: rgba(255, 152, 0, 0.9);
-    }
 
  
 
@@ -429,23 +443,26 @@ background: var(--bg-button) !important;
         --row-light: #2d0014;
         --row-dark: #1a000a;
         --today-yellow: #e0115f;
-        --text-main: #f48fb1;
-        --text-sidebar: #880044;
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+        --text-sidebar: #f48fb1;
         --bg-button: rgba(80, 0, 40, 0.9);
     }
 
-    [data-theme="purple"] {
+    [data-theme="viola"] {
         --sidebar-gray: #0a001a;
         --row-light: #14002d;
         --row-dark: #0a001a;
         --today-yellow: #107c41;
-        --text-main: #ce93d8;
-        --text-sidebar: #440088;
+    --text-main: #ffffff!important;
+    --text-event: #ffffff!important;
+        --text-sidebar: #ce93d8;
         --bg-button: rgba(40, 0, 80, 0.9);
     }
 
  
 }
+
 
 /* Nur aktiv, wenn das Handy quer liegt */
 @media (orientation: landscape) {
@@ -510,7 +527,7 @@ background: var(--bg-button) !important;
 </button>
 
 <button onclick="openSearch()" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10; cursor: pointer; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); color: #ffffff; border: 0px solid #333333; padding: 10px 20px; font-size: 0.85rem; font-weight: bold; border-radius: 80px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); font-family: sans-serif; letter-spacing: 0.5px; white-space: nowrap;">
-   <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'SEARCH' : 'SUCHE')</script>
+   <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'FIND' : 'SUCHE')</script>
 </button>
 
 <div id="m-search" class="modal">
@@ -538,11 +555,11 @@ background: var(--bg-button) !important;
     <div class="m-box" style="padding: 20px; border-radius: 16px; background: #1e1e1e; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
         <h3 id="m-title" style="margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; color: #ffffff; text-align: center;">Termin</h3>
         
-        <input type="text" id="m-text" placeholder="Titel eingeben" style="width: 100%; height: 44px; font-size: 16px; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 0 12px; box-sizing: border-box; margin-bottom: 15px;">
+        <input type="text" id="m-text" placeholder="Name" style="width: 100%; height: 44px; font-size: 16px; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 0 12px; box-sizing: border-box; margin-bottom: 15px;">
         
         <div class="check-row" id="toggle-trigger" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #ffffff; font-size: 1rem;">
             <input type="checkbox" id="m-all" style="width: 20px; height: 20px; accent-color: var(--text-main);">
-            <span>Ganztägig</span>
+            <span><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '24h' : 'Ganztägig')</script></span>
         </div>
         
         <div style="display: flex; gap: 12px; margin-bottom: 20px;">
@@ -552,39 +569,39 @@ background: var(--bg-button) !important;
                 <div id="m-time-start-wrap"><input type="time" id="m-time-start" style="width: 100%; height: 44px; font-size: 16px; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 0 10px; box-sizing: border-box;"></div>
             </div>
             <div style="flex: 1;">
-                <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Ende</label>
+                <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'End' : 'Ende')</script></label>
                 <input type="date" id="m-end-date" style="width: 100%; height: 44px; font-size: 16px; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 0 10px; box-sizing: border-box; margin-bottom: 6px;">
                 <div id="m-time-end-wrap"><input type="time" id="m-time-end" style="width: 100%; height: 44px; font-size: 16px; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 0 10px; box-sizing: border-box;"></div>
             </div>
         </div>
 
-        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Wiederholung</label>
+        <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Repeat' : 'Wiederholung')</script></label>
         <select id="m-rep" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
-            <option value="none">Einmalig</option>
-            <option value="d">Täglich</option>
-            <option value="w">Wöchentlich</option>
-            <option value="m">Monatlich</option>
-            <option value="y">Jährlich</option>
+            <option value="none">-</option>
+            <option value="d"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Daily' : 'Täglich')</script></option>
+            <option value="w"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Weekly' : 'Wöchentlich')</script></option>
+            <option value="m"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Monthly' : 'Monatlich')</script></option>
+            <option value="y"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Yearly' : 'Jährlich')</script></option>
         </select>
         
         <div class="btn-grid">
-            <button class="btn-green" onclick="save()">Speichern</button>
-            <button id="m-del" class="btn-red" style="display:none" onclick="showDeleteOptions()">Löschen</button>
-            <button class="btn-gray full" onclick="closePop()">Abbrechen</button>
+            <button class="btn-white" onclick="save()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Save' : 'Speichern')</script></button>
+            <button id="m-del" class="btn-red" style="display:none" onclick="showDeleteOptions()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Delete' : 'Löschen')</script></button>
+            <button class="btn-gray full" onclick="closePop()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Cancel' : 'Abbrechen')</script></button>
         </div>
     </div>
 </div>
 <div id="m-del-confirm" class="modal">
     <div class="m-box" style="padding: 24px 20px; border-radius: 16px; background: #1e1e1e; box-shadow: 0 8px 32px rgba(0,0,0,0.5); text-align: center;">
-        <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 1.3rem; color: #ffffff;">Löschen</h3>
+        <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 1.3rem; color: #ffffff;"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Delete' : 'Löschen')</script></h3>
         
-        <p style="color: #e0e0e0; font-size: 1rem; margin-top: 0; margin-bottom: 25px; line-height: 1.4;">Serie oder nur diesen Tag?</p>
+        <p style="color: #e0e0e0; font-size: 1rem; margin-top: 0; margin-bottom: 25px; line-height: 1.4;"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Series or only this day?' : 'Serie oder nur diesen Tag?')</script></p>
         
         <div class="btn-grid">
-            <button class="btn-red" onclick="delSingle()">Nur diesen</button>
-            <button class="btn-red" onclick="delSerie()">Ganze Serie</button>
+            <button class="btn-red" onclick="delSingle()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'This day' : 'Nur diesen')</script></button>
+            <button class="btn-red" onclick="delSerie()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Series' : 'Ganze Serie')</script></button>
             
-            <button class="btn-gray full" onclick="hideDeleteOptions()" style="margin-top: 5px;">Abbrechen</button>
+            <button class="btn-gray full" onclick="hideDeleteOptions()" style="margin-top: 5px;"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Cancel' : 'Abbrechen')</script></button>
         </div>
     </div>
 </div>
@@ -597,8 +614,8 @@ background: var(--bg-button) !important;
         <textarea id="b-export" readonly style="width: 100%; height: 60px; font-size: 0.8rem; color: #ccc; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 1px; font-family: monospace;"></textarea>
         
         <div class="btn-grid" style="margin-bottom: 10px;">
-            <button class="btn-gray full" onclick="copyB()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Copy' : 'Kopieren')</script></button>
-            <button class="btn-gray" onclick="downloadB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Save' : 'Speichern')</script></button>
+            <button class="btn-white full" onclick="copyB()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Copy' : 'Kopieren')</script></button>
+            <button class="btn-white" onclick="downloadB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Save' : 'Speichern')</script></button>
             <button class="btn-red" onclick="clearAllData()">  <script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Delete' : 'Löschen')</script></button>
         </div>
         
@@ -608,7 +625,7 @@ background: var(--bg-button) !important;
         <textarea id="b-import" style="width: 100%; height: 60px; font-size: 0.8rem; color: #ffffff; background: #2a2a2a; border: 1px solid #333; border-radius: 10px; padding: 10px; box-sizing: border-box; resize: none; margin-bottom: 1px;" placeholder="Backup..."></textarea>
         
         <div class="btn-grid" style="margin-bottom: 10px;">
-            <button class="btn-green full" onclick="importB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Load' : 'Laden')</script></button>
+            <button class="btn-white full" onclick="importB()"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'Load' : 'Laden')</script></button>
         </div>
         
 
@@ -618,12 +635,12 @@ background: var(--bg-button) !important;
         <div class="settings-row">
  
     <select id="reminderTime" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
-        <option id="opt0" value="0">0h</option>
-        <option id="opt15" value="15">15m</option>
-        <option id="opt30" value="30">30m</option>
-        <option id="opt60" value="60">1h</option>
-        <option id="opt120" value="120" selected>2h</option>
-        <option id="opt1440" value="1440">1d</option>
+        <option id="opt0" value="0"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? 'At the event time' : 'Zum Ereigniszeitpunkt')</script></option>
+        <option id="opt15" value="15"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '15 minutes' : '15 Minuten vorher')</script></option>
+        <option id="opt30" value="30"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '30 minutes' : '30 Minuten vorher')</script></option>
+        <option id="opt60" value="60"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '1 hour' : '1 Stunde vorher')</script></option>
+        <option id="opt120" value="120" selected><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '2 hours' : '2 Stunden vorher')</script></option>
+        <option id="opt1440" value="1440"><script>document.write((navigator.language || navigator.userLanguage).startsWith('en') ? '1 day' : '1 Tag vorher')</script></option>
     </select>
 </div>
         
@@ -634,16 +651,16 @@ background: var(--bg-button) !important;
         <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.5px;">Design</label>
         
         <select id="theme-select" onchange="changeTheme(this.value)" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
-            <option value="green">Kiwi</option>
-            <option value="blue">Aqua</option>
-            <option value="red">Lava</option>
-            <option value="gray">Titan</option>
-            <option value="yellow">Mango</option>
-            <option value="orange">Orange</option>
+            <option value="infinity">Infinity (Standard)</option>
+            <option value="aqua">Aqua</option>
+            <option value="kiwi">Kiwi</option>
+            <option value="titan">Titan</option>
+            <option value="mango">Mango</option>
+           <option value="lava">Lava</option>
             <option value="pink">Pink</option>
-            <option value="purple">Viola</option>
-            <option value="turquoise">Cyan</option>
-            <option value="bw">Mono</option>
+            <option value="viola">Viola</option>
+            <option value="cyan">Cyan</option>
+            <option value="mono">Mono</option>
         </select>
 
         <div class="btn-grid">
@@ -833,7 +850,7 @@ background: var(--bg-button) !important;
 
     function openAdd(ds) {
         curId = null; curSelectedDate = ds;
-        document.getElementById('m-title').innerText = "Termin";
+        document.getElementById('m-title').innerText = "Event";
         document.getElementById('m-text').value = '';
         document.getElementById('m-start-date').value = ds;
         document.getElementById('m-end-date').value = ds;
@@ -1211,7 +1228,7 @@ function changeTheme(theme) {
 
 // Beim Start das gespeicherte Thema laden
 (function() {
-    const savedTheme = localStorage.getItem('inf_theme') || 'green';
+    const savedTheme = localStorage.getItem('inf_theme') || 'infinity';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const select = document.getElementById('theme-select');
     if(select) select.value = savedTheme;
@@ -1221,6 +1238,61 @@ function changeTheme(theme) {
 document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
 });
+
+
+// --- AUTOMATISCHER BACKUP-REMINDER ALLE 2 WOCHEN (DEUTSCH & ENGLISCH) ---
+if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) {
+    const LocalNotifications = window.Capacitor.Plugins.LocalNotifications;
+
+    (async () => {
+        try {
+            // 1. Berechtigungen prüfen und ggf. anfragen
+            let perm = await LocalNotifications.checkPermissions();
+            if (perm.display !== 'granted') {
+                perm = await LocalNotifications.requestPermissions();
+            }
+
+            // 2. Wenn der Nutzer zustimmt, den Reminder einrichten
+            if (perm.display === 'granted') {
+                
+                // Startzeit berechnen: Heute in genau 14 Tagen um 18:00 Uhr abends
+                let firstBackupTime = new Date();
+                firstBackupTime.setDate(firstBackupTime.getDate() + 14);
+                firstBackupTime.setHours(18, 0, 0, 0); 
+
+                // Sprache abfragen
+                const isEnglish = (navigator.language || navigator.userLanguage).startsWith('en');
+                
+                // Texte dynamisch setzen
+                const reminderTitle = isEnglish ? "Backup Reminder" : "Backup-Erinnerung";
+                const reminderBody = isEnglish 
+                    ? "Secure your calendar data now via the Tools menu." 
+                    : "Sichere deine Kalenderdaten jetzt über das Tools-Menü.";
+
+                // Notification bei iOS registrieren
+                await LocalNotifications.schedule({
+                    notifications: [
+                        {
+                            title: reminderTitle,
+                            body: reminderBody,
+                            id: 99999,          // Feste ID verhindert doppelte Erinnerungen
+                            sound: 'default',    // Macht alle 2 Wochen akustisch auf sich aufmerksam
+                            schedule: { 
+                                at: firstBackupTime,
+                                every: 'two-weeks' // Wiederholt sich automatisch alle 14 Tage
+                            }
+                        }
+                    ]
+                });
+                
+                console.log(`Backup-Reminder auf ${isEnglish ? 'Englisch' : 'Deutsch'} eingerichtet.`);
+            }
+        } catch (error) {
+            console.error("Fehler beim Einrichten des Backup-Reminders:", error);
+        }
+    })();
+}
+
 
 
 // ==========================================
@@ -1278,7 +1350,7 @@ function runSearch() {
         html += `
             <div style="padding:8px; border-bottom:1px solid #f0f0f0; font-size:14px;">
                 <strong>${formatiertesDatum}</strong>: ${item.title}${wiederholung}
-                ${item.startTime ? `<br><span style='color:gray; font-size:12px;'>Uhrzeit: ${item.startTime}</span>` : ''}
+                ${item.startTime ? `<br><span style='color:gray; font-size:12px;'>${item.startTime}</span>` : ''}
             </div>
         `;
     });
