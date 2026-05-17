@@ -7,6 +7,22 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
     <title>Infinity Calendar</title>
     <style>
+    /* Schaltet den Balken für JEDES Element und dessen Unterelemente ab */
+    *, *::before, *::after {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
+    
+    *::-webkit-scrollbar,
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+        opacity: 0 !important;
+    }
+</style>    <style>
 :root, [data-theme="infinity"] {
     --bg-black: #ffffff;
     --sidebar-gray: #f2f2f7;
@@ -888,7 +904,7 @@ function save() {
         if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) {
             const LocalNotifications = window.Capacitor.Plugins.LocalNotifications;
 
-            (async () => {
+            setTimeout(async () => {
                 try {
                     // 1. Erstmalig nach Erlaubnis fragen (Apple-Popup triggern)
                     let perm = await LocalNotifications.checkPermissions();
@@ -937,7 +953,7 @@ function save() {
                 } catch (error) {
                     console.error("Fehler bei den Notifications:", error);
                 }
-            })();
+            }, 1000);
         }
         // ---------------------------------------------------------------------------
 
@@ -1247,7 +1263,7 @@ document.addEventListener('gesturestart', function (e) {
 if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) {
     const LocalNotifications = window.Capacitor.Plugins.LocalNotifications;
 
-    (async () => {
+    setTimeout(async () => {
         try {
             // 1. Berechtigungen prüfen und ggf. anfragen
             let perm = await LocalNotifications.checkPermissions();
@@ -1293,7 +1309,7 @@ if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Loc
         } catch (error) {
             console.error("Fehler beim Einrichten des Backup-Reminders:", error);
         }
-    })();
+    }, 1000);
 }
 
 
