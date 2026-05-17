@@ -561,10 +561,10 @@ background: var(--bg-button) !important;
         <label style="font-size: 0.85rem; font-weight: 600; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Wiederholung</label>
         <select id="m-rep" style="width: 100%; height: 44px; margin-bottom: 25px; font-size: 16px; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 0 12px; -webkit-appearance: none; appearance: none; cursor: pointer;">
             <option value="none">Einmalig</option>
-            <option value="täglich">Täglich</option>
-            <option value="wöchentlich">Wöchentlich</option>
-            <option value="monatlich">Monatlich</option>
-            <option value="jährlich">Jährlich</option>
+            <option value="d">Täglich</option>
+            <option value="w">Wöchentlich</option>
+            <option value="m">Monatlich</option>
+            <option value="y">Jährlich</option>
         </select>
         
         <div class="btn-grid">
@@ -790,10 +790,10 @@ background: var(--bg-button) !important;
                         else rel = "middle";
                         break; 
                     }
-                    if (e.rep === 'täglich') a.setDate(a.getDate() + 1);
-                    else if (e.rep === 'wöchentlich') a.setDate(a.getDate() + 7);
-                    else if (e.rep === 'monatlich') a.setMonth(a.getMonth() + 1);
-                    else if (e.rep === 'jährlich') a.setFullYear(a.getFullYear() + 1);
+                    if (e.rep === 'd') a.setDate(a.getDate() + 1);
+                    else if (e.rep === 'w') a.setDate(a.getDate() + 7);
+                    else if (e.rep === 'm') a.setMonth(a.getMonth() + 1);
+                    else if (e.rep === 'y') a.setFullYear(a.getFullYear() + 1);
                     else break;
                 }
             }
@@ -846,39 +846,56 @@ function save() {
         const obj = { id: curId || Date.now(), title, startDate: start, endDate: end, all: document.getElementById('m-all').checked, startTime: document.getElementById('m-time-start').value, endTime: document.getElementById('m-time-end').value, rep: document.getElementById('m-rep').value };
         if(curId) db = db.map(i => i.id === curId ? obj : i); else db.push(obj);
         
-        // --- PUSH NOTIFICATION AN XCODE SENDEN (2 STUNDEN VORHER & ZWEISPRACHIG) ---
-        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.pushBridge) {
-            const timeStart = obj.all ? "09:00" : obj.startTime;
-            
-            // Datum splitten, um den Zeitzonen-Bug zu umgehen
-            const parts = obj.startDate.split('-'); 
-            const timeParts = timeStart.split(':'); 
-            
-            // Lokale Zeit berechnen
-            let notificationTime = new Date(parts[0], parts[1] - 1, parts[2], timeParts[0], timeParts[1]);
-            
-            // Genau 2 Stunden abziehen
-            notificationTime.setHours(notificationTime.getHours() - 2);
-            
-            // Sauberen String für Xcode bauen
-            const pad = (num) => String(num).padStart(2, '0');
-            const localIsoDate = `${notificationTime.getFullYear()}-${pad(notificationTime.getMonth() + 1)}-${pad(notificationTime.getDate())}T${pad(notificationTime.getHours())}:${pad(notificationTime.getMinutes())}:00`;
-            
-            // Sprache abfragen
-            const isEnglish = (navigator.language || navigator.userLanguage).startsWith('en');
-            const notificationTitle = isEnglish ? "Upcoming Event" : "Anstehender Termin";
-            
-            const notificationData = {
-                title: notificationTitle,
-                body: obj.title,
-                date: localIsoDate
-            };
-            
-            // Daten an Xcode schicken
-            window.webkit.messageHandlers.pushBridge.postMessage(notificationData);
+// --- LOCAL NOTIFICATION MIT CAPACITOR (PERFEKT FÜR REINES JS) ---
+        if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) {
+            const LocalNotifications = window.Capacitor.Plugins.LocalNotifications;
+
+            (async () => {
+                try {
+                    // 1. Erstmalig nach Erlaubnis fragen (Apple-Popup triggern)
+                    let perm = await LocalNotifications.checkPermissions();
+                    if (perm.display !== 'granted') {
+                        perm = await LocalNotifications.requestPermissions();
+                    }
+
+                    if (perm.display === 'granted') {
+                        const timeStart = obj.all ? "09:00" : obj.startTime;
+                        
+                        // Datum splitten, um den Zeitzonen-Bug zu umgehen
+                        const parts = obj.startDate.split('-'); 
+                        const timeParts = timeStart.split(':'); 
+                        
+                        // Lokale Zeit berechnen
+                        let notificationTime = new Date(parts[0], parts[1] - 1, parts[2], timeParts[0], timeParts[1]);
+                        
+                        // Genau 2 Stunden abziehen
+                        notificationTime.setHours(notificationTime.getHours() - 2);
+
+                        // Sprache abfragen
+                        const isEnglish = (navigator.language || navigator.userLanguage).startsWith('en');
+                        const notificationTitle = isEnglish ? "Upcoming Event" : "Anstehender Termin";
+
+                        // 2. Notification an iOS übergeben
+                        await LocalNotifications.schedule({
+                            notifications: [
+                                {
+                                    title: notificationTitle,
+                                    body: obj.title,
+                                    id: Math.floor(Math.random() * 100000), // Einzigartige ID für iOS
+                                    schedule: { at: notificationTime },
+                                    sound: 'default' // Schaltet den Standard-iOS-Ton ein
+                                }
+                            ]
+                        });
+                    }
+                } catch (error) {
+                    console.error("Fehler bei den Notifications:", error);
+                }
+            })();
         }
         // ---------------------------------------------------------------------------
 
+        // Prozess lautlos abschließen (Wichtig, damit nichts schwarz bleibt!)
         silentFinalize();
     }
 
@@ -1098,33 +1115,60 @@ function openBackup() {
         }
     }
 
-    function downloadB() { 
-        try {
-            const rawData = JSON.stringify({db, exceptions});
+   function downloadB() { 
+    try {
+        const rawData = JSON.stringify({db, exceptions});
+        
+        // Text unlesbar machen (dein originaler Code)
+        const verschluesselterText = btoa(encodeURIComponent(rawData).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+        
+        // Prüfen, ob wir als App auf dem iPhone laufen
+        if (window.Capacitor && window.Capacitor.isNativePlatform()) {
             
-            // Text unlesbar machen
-            const verschluesselterText = btoa(encodeURIComponent(rawData).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-                return String.fromCharCode('0x' + p1);
-            }));
-            
-            // Wichtig: Wir nehmen 'text/plain', das blockiert kein Browser
+            const Filesystem = window.Capacitor.Plugins.Filesystem;
+            const Share = window.Capacitor.Plugins.Share;
+
+            if (!Filesystem || !Share) {
+                alert("Fehler: Die Capacitor-Plugins wurden nicht richtig geladen.");
+                return;
+            }
+
+            // 1. Datei im Zwischenspeicher der App ablegen
+            Filesystem.writeFile({
+                path: 'kalender_backup.txt',
+                data: verschluesselterText,
+                directory: 'CACHE', // Nutzt den temporären Cache-Ordner auf iOS
+                encoding: 'utf8'
+            }).then(function(result) {
+                // 2. Das native iOS-Teilen-Menü öffnen
+                return Share.share({
+                    title: 'Kalender Backup',
+                    url: result.uri // Gibt den Pfad der Datei an iOS weiter
+                });
+            }).catch(function(err) {
+                alert("Fehler beim Speichern auf iOS: " + err.message);
+            });
+
+        } else {
+            // FALLBACK FÜR LAPTOP: Dein originaler, funktionierender Code
             const blob = new Blob([verschluesselterText], {type: 'text/plain'}); 
             const a = document.createElement('a'); 
             a.href = URL.createObjectURL(blob); 
             a.download = 'kalender_backup.txt'; 
             
-            // Dieser Teil zwingt iOS/Safari dazu, die Datei wirklich zu speichern
             document.body.appendChild(a);
             a.click(); 
             setTimeout(() => {
                 document.body.removeChild(a);
                 URL.revokeObjectURL(a.href);
             }, 100);
-        } catch(e) {
-            alert("Fehler beim Download.");
         }
+    } catch(e) {
+        alert("Fehler beim Download: " + e.message);
     }
-
+}
     function clearAllData() { if(confirm("Alles löschen?")) { localStorage.clear(); location.reload(); } }
     function showDeleteOptions() { if(document.getElementById('m-rep').value !== 'none') document.getElementById('m-del-confirm').style.display = 'flex'; else delSerie(); }
     function hideDeleteOptions() { document.getElementById('m-del-confirm').style.display = 'none'; }
