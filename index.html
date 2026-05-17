@@ -6,48 +6,42 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
     <title>Infinity Calendar</title>
     <style>
-   :root, [data-theme="infinity"]  {
---bg-black: #ffffff;
---bg-black: #ffffff;
-    --sidebar-gray: #f0f2f5;
-    --row-light: #fff3d1;
-    --row-dark: #ffd8a8;
-    --today-yellow: #ff6b6b;
-    --text-main: #1a1510;
-    --text-event: #1a1510;
-    --text-sidebar: #495057;
-    --bg-button: #ff922b;
+:root, [data-theme="infinity"] {
+    --bg-black: #ffffff;
+    --sidebar-gray: #f2f2f7;
+    --row-light: #ffffff;
+    --row-dark: #fafafc;
+    --today-yellow: #ffb300;
+    --text-main: #1c1c1e;
+    --text-event: #1c1c1e !important;
+    --text-sidebar: #1c1c1e !important;
+    --bg-button: #ffb300;
 }
 
-[data-theme="lava"] {
-    --bg-black: #ffffff;
-    --sidebar-gray: #4a1212;
-    --row-light: #fff0f0;
-    --row-dark: #ffccd5;
-    --today-yellow: #ff3344;
-    --text-main: #2b0505;
-    --text-event: #2b0505;
-    --text-sidebar: #ffffff;
-    --bg-button: #ff3344;
-}
+
 
 [data-theme="aqua"] {
     --bg-black: #ffffff;
-    --sidebar-gray: #e0f7fa;
-    --row-light: #b2ebf2;
-    --row-dark: #80deea;
-    --today-yellow: #ff6d00;
-    --text-main: #004d40;
-    --text-event: #004d40;
-    --text-sidebar: #004d40;
-    --bg-button: #ff6d00;
+    --sidebar-gray: #f2f2f7;
+    --row-light: #dcf2fd;
+    --row-dark: #bce3f9;
+    --today-yellow: #25ade7;
+    --text-event: #000000 !important;  
+    --text-main: #000000 !important; 
+    --text-sidebar: #000000 !important; 
+    --bg-button: rgba(37, 173, 231, 0.7);
 }
 
+
+
+
+
 [data-theme="mono"] {
-    --sidebar-gray: #f5f5f5 !important; 
-    --row-light: #ffffff !important; 
-    --row-dark: #fcfcfc !important; 
---today-yellow: #999999 !important;  
+    --bg-black: #ffffff;
+    --sidebar-gray: #f2f2f7;
+    --row-light: #e5e5ea !important;
+    --row-dark: #d1d1d6 !important;
+    --today-yellow: #999999 !important; 
     --text-event: #000000 !important;  
     --text-main: #000000 !important; 
     --text-sidebar: #000000 !important; 
@@ -56,73 +50,30 @@
 
 
 [data-theme="kiwi"] {
-    --bg-black: #000000;
-    --sidebar-gray: #3d3d3d;
+    --bg-black: #ffffff;
+    --sidebar-gray: #f2f2f7;
     --row-light: #e1fbc4;
     --row-dark: #c9efaa;
     --today-yellow: #00cc44;
-    --text-main: #1b5e20;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
+    --text-event: #000000 !important;  
+    --text-main: #000000 !important; 
+    --text-sidebar: #000000 !important; 
     --bg-button: rgba(46, 125, 50, 0.7);
 }
 
-[data-theme="titan"] {
-    --sidebar-gray: #212121;
-    --row-light: #f5f5f5;
-    --row-dark: #e0e0e0;
-    --today-yellow: #ffaaaa;
-    --text-main: #424242;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(66, 66, 66, 0.7);
-}
-
-[data-theme="mango"] {
-    --sidebar-gray: #fbc02d;
-    --row-light: #fffde7;
-    --row-dark: #fff9c4;
-    --today-yellow: #00e5ff; 
-    --text-main: #f57f17;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(251, 192, 45, 0.8);
+[data-theme="lava"] {
+    --bg-black: #ffffff;
+    --sidebar-gray: #f2f2f7;
+    --row-light: #ffe5e3;
+    --row-dark: #ffcccc;
+    --today-yellow: #ff3b30;
+    --text-event: #000000 !important;  
+    --text-main: #000000 !important; 
+    --text-sidebar: #000000 !important; 
+    --bg-button: rgba(255, 59, 48, 0.7);
 }
 
 
-
-[data-theme="pink"] {
-    --sidebar-gray: #880e4f;
-    --row-light: #fce4ec;
-    --row-dark: #f8bbd0;
-    --today-yellow: #ff1493;
-    --text-main: #ad1457;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(136, 14, 79, 0.8);
-}
-
-[data-theme="viola"] {
-    --sidebar-gray: #4a148c;
-    --row-light: #f3e5f5;
-    --row-dark: #e1bee7;
-    --today-yellow: #76ff03;
-    --text-main: #6a1b9a;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(74, 20, 140, 0.8);
-}
-
-[data-theme="cyan"] {
-    --sidebar-gray: #006064;
-    --row-light: #e0f2f1;
-    --row-dark: #b2dfdb;
-    --today-yellow: #ff4081; 
-    --text-main: #00695c;
-    --text-event: #000000;
-    --text-sidebar: #ffffff;
-    --bg-button: rgba(0, 96, 100, 0.8);
-}
 
 
 
@@ -345,120 +296,68 @@ background: var(--bg-button) !important;
 @media (prefers-color-scheme: dark)   {
 
 :root, [data-theme="infinity"] {
---bg-black: #0c0a08;  
-    --sidebar-gray: #0c0a08;     
-    --row-light: #593100;
-    --row-dark: #632200; 
-    --today-yellow: #ff6d00; 
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;    
-    --text-sidebar: #ffffff;    
-    --bg-button: #ff3c00;        
+    --bg-black: #000000;
+    --sidebar-gray: #121212;
+    --row-light: #241a12;
+    --row-dark: #140e0a;
+    --today-yellow: #d65a00;
+    --text-main: #ffffff !important;
+    --text-event: #ffffff !important;
+    --text-sidebar: #888888!important;
+    --bg-button: rgba(50, 32, 20, 0.9);
 }
 
-[data-theme="lava"] {
-    --bg-black: #0d0606;
-    --sidebar-gray: #140a0a;
-    --row-light: #4a0d0d;
-    --row-dark: #330505;
-    --today-yellow: #ff4500;
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-    --text-sidebar: #e5c5c5;
-    --bg-button: #ff4500;
-}
 
-    [data-theme="aqua"] {
-        --sidebar-gray: #0a0e14;
-        --row-light: #0d1b2a;
-        --row-dark: #1b263b;
-        --today-yellow: #AA8E00;
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-        --text-sidebar: #FFFFFF;
-        --bg-button: rgba(13, 30, 71, 0.9);
-    }
+
+[data-theme="aqua"] {
+    --bg-black: #000000;
+    --sidebar-gray: #121212;
+    --row-light: #13222d;  
+    --row-dark: #0b151c;  
+    --today-yellow: #00a1f1;  
+    --text-main: #ffffff !important;
+    --text-event: #ffffff !important;
+    --text-sidebar: #888888!important;
+    --bg-button: rgba(14, 45, 65, 0.9); 
+}
 
     [data-theme="kiwi"] {
+        --bg-black: #000000;
         --sidebar-gray: #121212;
         --row-light: #1D2619;
         --row-dark: #161D12;
         --today-yellow: #1db94c;
     --text-main: #ffffff!important;
     --text-event: #ffffff!important;
-        --text-sidebar: #888888;
+    --text-sidebar: #888888!important;
         --bg-button: rgba(20, 50, 20, 0.9);
     }
 
-    [data-theme="mono"] {
-        --sidebar-gray: #000000!important;
-        --row-light: #111111!important;
-        --row-dark: #000000!important;
-        --today-yellow: #444444!important;
-        --text-main: #ffffff!important;
-        --text-event: #ffffff! important;
-        --text-sidebar: #ffffff!important;
-        --bg-button: rgba(0, 0, 0, 0.9);
-    }
-
-    [data-theme="titan"] {
-        --sidebar-gray: #050505;
-        --row-light: #1a1a1a;
-        --row-dark: #2a2a2a;
-        --today-yellow: #FF0000; 
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-        --text-sidebar: #666666;
-        --bg-button: rgba(40, 40, 40, 0.9);
-    }
-
-[data-theme="mango"] { 
-        --sidebar-gray: #1a1a00; 
-        --row-light: #5e521e; /* Heller lassen für echten Gelb-Look */
-        --row-dark: #473e13; 
-        --today-yellow: #00b0ff; 
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-        --text-sidebar: #ffffff; 
-        --bg-button: rgba(253, 216, 53, 0.9); 
-    }
-
-    [data-theme="cyan"] { 
---bg-black: #000d0d;         
-    --sidebar-gray: #001a1a;     
-    --row-light: #005959;        
-    --row-dark: #004444;         
-    --today-yellow: #d84315;     
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;    
-    --text-sidebar: #ffffff;     
-    --bg-button: #d84315;  
+[data-theme="mono"] {
+    --bg-black: #000000;
+    --sidebar-gray: #121212 !important;
+    --row-light: #1c1c1e !important;
+    --row-dark: #111111 !important;
+    --today-yellow: #3a3a3c;
+    --text-main: #ffffff !important;
+    --text-event: #ffffff !important;
+    --text-sidebar: #888888 !important;
+    --bg-button: rgba(4c, 4c, 50, 0.9);
 }
 
+[data-theme="lava"] {
+    --bg-black: #000000;
+    --sidebar-gray: #121212;
+    --row-light: #241414;     
+    --row-dark: #140a0a;   
+    --today-yellow: #ff453a;  
+    --text-main: #ffffff !important;
+    --text-event: #ffffff !important;
+    --text-sidebar: #888888!important;  
+    --bg-button: rgba(50, 20, 20, 0.9); 
+}
 
  
-
-    [data-theme="pink"] {
-        --sidebar-gray: #1a000a;
-        --row-light: #2d0014;
-        --row-dark: #1a000a;
-        --today-yellow: #e0115f;
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-        --text-sidebar: #f48fb1;
-        --bg-button: rgba(80, 0, 40, 0.9);
-    }
-
-    [data-theme="viola"] {
-        --sidebar-gray: #0a001a;
-        --row-light: #14002d;
-        --row-dark: #0a001a;
-        --today-yellow: #107c41;
-    --text-main: #ffffff!important;
-    --text-event: #ffffff!important;
-        --text-sidebar: #ce93d8;
-        --bg-button: rgba(40, 0, 80, 0.9);
-    }
 
  
 }
@@ -654,12 +553,7 @@ background: var(--bg-button) !important;
             <option value="infinity">Infinity (Standard)</option>
             <option value="aqua">Aqua</option>
             <option value="kiwi">Kiwi</option>
-            <option value="titan">Titan</option>
-            <option value="mango">Mango</option>
-           <option value="lava">Lava</option>
-            <option value="pink">Pink</option>
-            <option value="viola">Viola</option>
-            <option value="cyan">Cyan</option>
+            <option value="lava">Lava</option>
             <option value="mono">Mono</option>
         </select>
 
